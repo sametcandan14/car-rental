@@ -8,7 +8,11 @@ const Header = () => {
         <Link to="/">
           <img width={50} src="/bmw.png" />
         </Link>
-        <CustomButton title="Kaydol" />
+        <CustomButton
+          title="Kaydol"
+          btnType="button"
+          designs="bg-primary-blue rounded-full text-white min-w-[130px] hover:bg-blue-800"
+        />
       </nav>
     </header>
   );
