@@ -1,15 +1,11 @@
+# Libraries
 
- # Libraries
-
- -React
- -Typescript
- -React-select
- -Framer-motion
- -Tailwind
-
-
-
-
+-React
+-Typescript
+-React-select
+-Framer-motion
+-Tailwind
+-react-router-dom
 
 # React + TypeScript + Vite
 
