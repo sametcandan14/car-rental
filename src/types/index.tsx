@@ -6,6 +6,7 @@ export interface IButtonProps {
   handleClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
   btnType?: "button" | "submit";
+  rIcon?: string;
 }
 
 export interface ICarProps {

@@ -1,16 +1,24 @@
 import Hero from "../components/Hero";
+import { useState } from "react";
 import { useEffect } from "react";
 import { fetchCars } from "../utils";
 import { ICarProps } from "../types";
+import Card from "./../components/Card/index";
+
+interface Error {
+  error?: string;
+}
 
 const MainPage = () => {
-  const [cars, setCars] = useState([]);
+  const [cars, setCars] = useState<ICarProps[]>([]);
 
   useEffect(() => {
     fetchCars()
-      .then((res: ICarProps) => console.log(res))
+      .then((res: ICarProps[]) => setCars(res))
       .catch((err) => console.log(err));
   }, []);
+
+  const isDataEmpty: boolean = !Array.isArray(cars) || cars.length < 1 || !cars;
 
   return (
     <div>
@@ -22,7 +30,21 @@ const MainPage = () => {
         </div>
         <div>{/* filtreleme alanı*/}</div>
 
-        {/* araba kartları */}
+        {/* arabalar boş geldiyse ekrana uyarı basılır */}
+
+        {isDataEmpty ? (
+          <div className="home__error-container">
+            <h2>Üzgünüz Herhangi Bir Sonuç Bulunamadı</h2>
+          </div>
+        ) : (
+          <>
+            <section className="home__cars-wrapper">
+              {cars.map((car, i) => (
+                <Card car={car} key={i} />
+              ))}
+            </section>
+          </>
+        )}
       </div>
     </div>
   );

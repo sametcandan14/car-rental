@@ -6,6 +6,7 @@ const CustomButton = ({
   handleClick,
   disabled,
   btnType,
+  rIcon,
 }: IButtonProps) => {
   return (
     <button
@@ -14,7 +15,12 @@ const CustomButton = ({
       onClick={handleClick}
       type={btnType || "button"} // gönderildiyse btnType gönderilmediyse button
     >
-      <span>{title}</span>
+      <span className="flex-1">{title}</span>
+      {rIcon && (
+        <div className="relative w-6 h-6 ">
+          <img src={rIcon} />
+        </div>
+      )}
     </button>
   );
 };
