@@ -1,12 +1,15 @@
 import { ICarProps } from "../../types";
 import CustomButton from "../CustomButton";
 import CarInfo from "./CarInfo";
+import DetailModal from "./DetailModal";
+import { useState } from "react";
 
 interface ICarCardProps {
   car: ICarProps;
 }
 
 const Card = ({ car }: ICarCardProps) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <div className="car-card group">
       {/* araba ismi */}
@@ -41,11 +44,17 @@ const Card = ({ car }: ICarCardProps) => {
             title="Daha Fazla"
             designs="w-full py-[16px] rounded-full bg-primary-blue text-white hover:bg-blue-800"
             rIcon="/right-arrow.svg"
+            handleClick={() => setIsOpen(true)}
           />
         </div>
       </div>
 
       {/* detay modalı */}
+      <DetailModal
+        isOpen={isOpen}
+        closeModal={() => setIsOpen(false)}
+        car={car}
+      />
     </div>
   );
 };
