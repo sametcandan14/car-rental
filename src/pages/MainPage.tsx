@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { fetchCars } from "../utils";
 import { ICarProps } from "../types";
 import Card from "./../components/Card/index";
+import SearchBar from "../components/SearchBar";
+import CustomFilters from "../components/CustomFilters";
 
 interface Error {
   error?: string;
@@ -28,7 +30,16 @@ const MainPage = () => {
           <h1 className="text-4xl font-extrabold">Araba Kataloğu</h1>
           <p>Beğenebileceğin arabaları keşfet</p>
         </div>
-        <div>{/* filtreleme alanı*/}</div>
+
+        {/* filtreleme alanı*/}
+        <div className="home__filter">
+          <SearchBar />
+
+          <div className="home__filter-container">
+            <CustomFilters />
+            <CustomFilters />
+          </div>
+        </div>
 
         {/* arabalar boş geldiyse ekrana uyarı basılır */}
 
