@@ -6,6 +6,7 @@ import { ICarProps } from "../types";
 import Card from "./../components/Card/index";
 import SearchBar from "../components/SearchBar";
 import CustomFilters from "../components/CustomFilters";
+import { useSearchParams } from "react-router-dom";
 
 interface Error {
   error?: string;
@@ -13,12 +14,15 @@ interface Error {
 
 const MainPage = () => {
   const [cars, setCars] = useState<ICarProps[]>([]);
+  const [params, setParams] = useSearchParams();
 
   useEffect(() => {
-    fetchCars()
+    const paramObj = Object.fromEntries(params.entries());
+
+    fetchCars(paramObj)
       .then((res: ICarProps[]) => setCars(res))
       .catch((err) => console.log(err));
-  }, []);
+  }, [params]);
 
   const isDataEmpty: boolean = !Array.isArray(cars) || cars.length < 1 || !cars;
 

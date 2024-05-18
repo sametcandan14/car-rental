@@ -55,7 +55,7 @@ const DetailModal = ({ isOpen, closeModal, car }: IDetailProps) => {
             {/* araba bilgileri */}
 
             {Object.entries(car).map(([key, value]) => (
-              <div className="flex justify-between">
+              <div key={key} className="flex justify-between">
                 <h4 className="capitalize text-gray">
                   {key.split("_").join(" ")}
                 </h4>

@@ -24,7 +24,12 @@ const Card = ({ car }: ICarCardProps) => {
       </p>
       {/* Resim Alanı */}
       <div className="relative w-full h-40 my-3 object-contain">
-        <img src="hero.png" className="w-full h-full  object-contain" alt="" />
+        <img
+          // src={generateImage(car)}
+          src="hero.png"
+          className="w-full h-full  object-contain"
+          alt=""
+        />
       </div>
       {/* alt kısım */}
       <div className="relative flex w-full mt-2">
