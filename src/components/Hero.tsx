@@ -2,7 +2,11 @@ import CustomButton from "./CustomButton";
 
 const Hero = () => {
   const scrollTo = () => {
-    alert("aşağıya kaydır.");
+    const ele = document.getElementById("catalogue");
+
+    ele?.scrollIntoView({
+      behavior: "smooth",
+    });
   };
   return (
     <div className="hero ]">

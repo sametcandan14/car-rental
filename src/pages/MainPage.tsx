@@ -7,6 +7,8 @@ import Card from "./../components/Card/index";
 import SearchBar from "../components/SearchBar";
 import CustomFilters from "../components/CustomFilters";
 import { useSearchParams } from "react-router-dom";
+import ShowMore from "../components/ShowMore";
+import { fuels, years } from "../constants";
 
 interface Error {
   error?: string;
@@ -15,6 +17,8 @@ interface Error {
 const MainPage = () => {
   const [cars, setCars] = useState<ICarProps[]>([]);
   const [params, setParams] = useSearchParams();
+
+  const limit = Number(params.get("limit")) || 5;
 
   useEffect(() => {
     const paramObj = Object.fromEntries(params.entries());
@@ -36,12 +40,12 @@ const MainPage = () => {
         </div>
 
         {/* filtreleme alanı*/}
-        <div className="home__filter">
+        <div className="home__filters">
           <SearchBar />
 
           <div className="home__filter-container">
-            <CustomFilters />
-            <CustomFilters />
+            <CustomFilters title="Yakıt Tipi" options={fuels} />
+            <CustomFilters title="Üretim Yılı" options={years} />
           </div>
         </div>
 
@@ -53,10 +57,13 @@ const MainPage = () => {
           </div>
         ) : (
           <>
-            <section className="home__cars-wrapper">
-              {cars.map((car, i) => (
-                <Card car={car} key={i} />
-              ))}
+            <section>
+              <div className="home__cars-wrapper">
+                {cars.map((car, i) => (
+                  <Card car={car} key={i} />
+                ))}
+              </div>
+              <ShowMore limit={limit} isNext={limit < 30} />
             </section>
           </>
         )}
